@@ -50,4 +50,4 @@ export const connect: (defaultStore?: Store<any, any>) => ConnectMixinFunction =
 
     return <any>connectMixin;
 });
-export default bind;
+export default connect;

@@ -1,59 +1,80 @@
 {
-    "name": "@uxland/li-redux-connect",
-    "version": "0.0.0-development",
-    "description": "UXLand - Lit redux connect",
-    "homepage": "https://github.com/uxland/uxl-redux#readme",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/uxland/lit-redux-connect.git"
-    },
-    "bugs": {
-        "url": "https://github.com/uxland/lit-redux-connect/issues"
-    },
-    "author": "UXLand <dev@uxland.es> (http://www.uxland.es)",
-    "main": "lib/index.js",
-    "module": "es/index.js",
-    "types": "lib/index.d.ts",
-    "keywords": [
-        "lit-element",
-        "web components",
-        "redux"
-    ],
-    "devDependencies": {
-        "@types/ramda": "^0.26.3",
-        "typescript": "^3.3.3333"
-    },
-    "dependencies": {
-        "@uxland/uxl-utilities": "git+https://github.com/uxland/uxl-utilities.git",
-        "ramda": "^0.26.1",
-        "redux": "^4.0.1",
-        "tslib": "^1.9.3"
-    },
-    "scripts": {
-        "type-check": "tsc --noEmit",
-        "type-check:watch": "npm run type-check -- --watch",
-        "build:es": "cross-env BABEL_ENV=es babel --extensions '.ts' src --out-dir es",
-        "build:cjs": "cross-env BABEL_ENV=cjs babel src --extensions '.ts' --out-dir lib",
-        "build:types": "tsc -p tsconfig-types.json",
-        "build:umd": "cross-env NODE_ENV=development rollup -c -o dist/uxl-redux.js",
-        "build:umd:min": "cross-env NODE_ENV=production rollup -c -o dist/uxl-redux.min.js",
-        "build": "npm run build:es && npm run build:cjs && npm run build:types",
-        "test:ui:watch": "nodemon --watch test --watch src -x \"polymer test --config-file wct.config.json\"",
-        "test:ui": "polymer test --config-file wct.config.json",
-        "test:unit": "jest",
-        "tdd": "jest --watch",
-        "dist": "npm run build",
-        "travis-deploy-once": "travis-deploy-once",
-        "semantic-release": "semantic-release"
-    },
-    "license": "Apache-2.0",
-    "directories": {
-        "test": "test"
-    },
-    "publishConfig": {
-        "access": "public"
-    },
-    "release": {
-        "branch": "master"
-    }
+  "name": "@uxland/li-redux-connect",
+  "version": "0.0.0-development",
+  "description": "UXLand - Lit redux connect",
+  "homepage": "https://github.com/uxland/uxl-redux#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/uxland/lit-redux-connect.git"
+  },
+  "bugs": {
+    "url": "https://github.com/uxland/lit-redux-connect/issues"
+  },
+  "author": "UXLand <dev@uxland.es> (http://www.uxland.es)",
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "types": "lib/index.d.ts",
+  "keywords": [
+    "lit-element",
+    "web components",
+    "redux"
+  ],
+  "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.3.4",
+    "@babel/preset-env": "^7.3.4",
+    "@babel/preset-typescript": "^7.3.3",
+    "@skatejs/ssr": "^0.19.11",
+    "@types/jest": "^24.0.11",
+    "@types/ramda": "^0.26.3",
+    "cross-env": "^5.2.0",
+    "jest": "^24.5.0",
+    "redux-mock-store": "^1.5.3",
+    "rollup": "^1.6.0",
+    "rollup-plugin-typescript": "^1.0.0",
+    "rollup-plugin-uglify": "^6.0.2",
+    "semantic-release": "^15.13.3",
+    "travis-deploy-once": "^5.0.11",
+    "ts-jest": "^24.0.0",
+    "tslib": "^1.9.3",
+    "typescript": "^3.3.3333"
+  },
+  "dependencies": {
+    "@uxland/uxl-utilities": "git+https://github.com/uxland/uxl-utilities.git",
+    "chai": "^4.2.0",
+    "lit-element": "^2.0.1",
+    "ramda": "^0.26.1",
+    "redux": "^4.0.1"
+  },
+  "scripts": {
+    "type-check": "tsc --noEmit",
+    "type-check:watch": "npm run type-check -- --watch",
+    "build:es": "cross-env BABEL_ENV=es babel --extensions '.ts' src --out-dir es",
+    "build:cjs": "cross-env BABEL_ENV=cjs babel src --extensions '.ts' --out-dir lib",
+    "build:types": "tsc -p tsconfig-types.json",
+    "build:umd": "cross-env NODE_ENV=development rollup -c -o dist/uxl-redux.js",
+    "build:umd:min": "cross-env NODE_ENV=production rollup -c -o dist/uxl-redux.min.js",
+    "build": "npm run build:es && npm run build:cjs && npm run build:types",
+    "test:ui:watch": "nodemon --watch test --watch src -x \"polymer test --config-file wct.config.json\"",
+    "test:ui": "polymer test --config-file wct.config.json",
+    "test:unit": "jest",
+    "tdd": "jest --watch",
+    "dist": "npm run build",
+    "travis-deploy-once": "travis-deploy-once",
+    "semantic-release": "semantic-release",
+    "test": "karma start",
+    "test:watch": "karma start --auto-watch=true --single-run=false",
+    "test:es5": "karma start karma.es5.config.js",
+    "test:es5:watch": "karma start karma.es5.config.js --auto-watch=true --single-run=false"
+  },
+  "license": "Apache-2.0",
+  "directories": {
+    "test": "test"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "release": {
+    "branch": "master"
+  }
 }
