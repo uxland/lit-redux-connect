@@ -1,0 +1,59 @@
+{
+    "name": "@uxland/li-redux-connect",
+    "version": "0.0.0-development",
+    "description": "UXLand - Lit redux connect",
+    "homepage": "https://github.com/uxland/uxl-redux#readme",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/uxland/lit-redux-connect.git"
+    },
+    "bugs": {
+        "url": "https://github.com/uxland/lit-redux-connect/issues"
+    },
+    "author": "UXLand <dev@uxland.es> (http://www.uxland.es)",
+    "main": "lib/index.js",
+    "module": "es/index.js",
+    "types": "lib/index.d.ts",
+    "keywords": [
+        "lit-element",
+        "web components",
+        "redux"
+    ],
+    "devDependencies": {
+        "@types/ramda": "^0.26.3",
+        "typescript": "^3.3.3333"
+    },
+    "dependencies": {
+        "@uxland/uxl-utilities": "git+https://github.com/uxland/uxl-utilities.git",
+        "ramda": "^0.26.1",
+        "redux": "^4.0.1",
+        "tslib": "^1.9.3"
+    },
+    "scripts": {
+        "type-check": "tsc --noEmit",
+        "type-check:watch": "npm run type-check -- --watch",
+        "build:es": "cross-env BABEL_ENV=es babel --extensions '.ts' src --out-dir es",
+        "build:cjs": "cross-env BABEL_ENV=cjs babel src --extensions '.ts' --out-dir lib",
+        "build:types": "tsc -p tsconfig-types.json",
+        "build:umd": "cross-env NODE_ENV=development rollup -c -o dist/uxl-redux.js",
+        "build:umd:min": "cross-env NODE_ENV=production rollup -c -o dist/uxl-redux.min.js",
+        "build": "npm run build:es && npm run build:cjs && npm run build:types",
+        "test:ui:watch": "nodemon --watch test --watch src -x \"polymer test --config-file wct.config.json\"",
+        "test:ui": "polymer test --config-file wct.config.json",
+        "test:unit": "jest",
+        "tdd": "jest --watch",
+        "dist": "npm run build",
+        "travis-deploy-once": "travis-deploy-once",
+        "semantic-release": "semantic-release"
+    },
+    "license": "Apache-2.0",
+    "directories": {
+        "test": "test"
+    },
+    "publishConfig": {
+        "access": "public"
+    },
+    "release": {
+        "branch": "master"
+    }
+}

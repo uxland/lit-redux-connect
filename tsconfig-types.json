@@ -1,0 +1,35 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "rootDir": "src",
+    "outDir": "lib",
+    "declaration": true,
+    "allowSyntheticDefaultImports": true,
+    "noImplicitAny": false,
+    "emitDeclarationOnly": true,
+    "removeComments": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "moduleResolution": "node",
+    "noEmitHelpers": true,
+    "importHelpers": true,
+    "noResolve": false,
+    "strict": false,
+    "suppressExcessPropertyErrors": true,
+    "lib": ["es2018", "dom"],
+    "baseUrl": ".",
+    "paths": {
+      "tslib": [
+        "node_modules/tslib/tslib.d.ts"
+      ]
+    }
+  },
+  "include": [
+    "src"
+  ],
+  "exclude": [
+    "node_modules",
+    "es",
+    "lib"
+  ]
+}
