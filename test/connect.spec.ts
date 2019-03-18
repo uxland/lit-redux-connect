@@ -3,6 +3,8 @@ import {watch} from "../src/watch";
 import {LitElement, html, query, customElement} from "lit-element";
 import configureStore from "redux-mock-store";
 import * as render from '@skatejs/ssr'
+import mount from '@skatejs/bore';
+import {h} from '@skatejs/val';
 const mockStore = configureStore([])();
 const defaultComponentName = "custom-element";
 const getComponentName = (nameBase: string) => {
@@ -33,19 +35,19 @@ const createDefaultComponent: (selector?: (state) => any) => DefaultTestComponen
         myProperty: string;
         @query("#header") header: any;
     }
-    return new Component();
+    return componentName;
 };
 
 describe('connect mixin test suite', () =>{
     afterEach(() => {
-        propertySelector.mockReset();
+        //propertySelector.mockReset();
     });
     it('properties should be set when the component is created', async() =>{
-        let component = createDefaultComponent();
+        let componentName = createDefaultComponent();
+        const component = mount(`<${componentName}></${componentName}>`).node;
         await delay();
         expect(propertySelector).toBeCalledTimes(1);
         await component.updateComplete;
-        await render(component);
         expect(component.header.innerText).toBe('Hello from redux state');
     });
 });
