@@ -2,7 +2,6 @@ import connect from "../src/connect";
 import {watch} from "../src/watch";
 import {LitElement, html, query, customElement} from "lit-element";
 import configureStore from "redux-mock-store";
-import * as render from '@skatejs/ssr'
 import mount from '@skatejs/bore';
 import {h} from '@skatejs/val';
 const mockStore = configureStore([])();

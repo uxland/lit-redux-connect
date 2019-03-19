@@ -3,7 +3,7 @@ import {equals, filter, map, pipe, propEq, reject, uniq, values} from 'ramda';
 import {Store, Unsubscribe} from "redux";
 import {PropertyWatch} from "./connect";
 import {getWatchedProperties} from "./watched-redux-property";
-import {after, Debouncer, nop} from "@uxland/uxl-utilities";
+import {timeOut, Debouncer, nop} from "@uxland/uxl-utilities";
 
 const mapWatches = (watchesMap: { [key: string]: PropertyWatch }) => values(watchesMap);
 const getWatchesByStore: (store: Store) => (watches: PropertyWatch[]) => PropertyWatch[] = store => filter<PropertyWatch>(propEq('store', store));
@@ -30,7 +30,7 @@ const listen = (element: LitElement, store: Store) => {
     const watches = getStoreWatches(element)(store);
     let debounceJob = null;
     const update = () => pipe(getProperties(store.getState(), element), rejectUnchanged, updateProperties(element), nop)(watches);
-    return () => Debouncer.debounce(debounceJob, after(16), update);
+    return () => Debouncer.debounce(debounceJob, timeOut.after(16), update);
 };
 const listener = (element: LitElement) => (store: Store) => store.subscribe(listen(element, store));
 

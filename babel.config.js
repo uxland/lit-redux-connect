@@ -17,7 +17,12 @@ module.exports = api =>{
           es:{
               presets,
               plugins
+          },
+          test:{
+              presets:["@babel/preset-env"],
           }
-      }
+      },
+      presets:["@babel/preset-env"],
+      plugins
   };
 };
