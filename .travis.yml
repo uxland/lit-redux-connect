@@ -10,7 +10,7 @@ node_js: 10
 addons:
   chrome: stable
 script:
-  # - npm run test
+  - npm run test
 after_success:
   - npm run dist
 branches:

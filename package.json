@@ -65,7 +65,7 @@
     "build:umd": "cross-env NODE_ENV=development rollup -c -o dist/uxl-redux.js",
     "build:umd:min": "cross-env NODE_ENV=production rollup -c -o dist/uxl-redux.min.js",
     "build": "npm run build:es && npm run build:cjs && npm run build:types",
-    "test": "jest",
+    "test": "echo \"Warning: no test specified\" && exit 1",
     "tdd": "jest --watch",
     "dist": "npm run build",
     "travis-deploy-once": "travis-deploy-once",
