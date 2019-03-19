@@ -1,5 +1,4 @@
 import {forEach, pipe, propOr} from 'ramda';
-
 import {Unsubscribe} from "redux";
 
 const getSubscriptions = propOr<Unsubscribe[]>([], '__reduxStoreSubscriptions__');
