@@ -1,6 +1,6 @@
 import { Debouncer, nop, timeOut } from '@uxland/uxl-utilities';
 import { LitElement } from 'lit-element';
-import { filter, map, pipe, propEq, reject, uniq, values } from 'ramda';
+import { filter, map, pipe, propEq, reject, uniq, values, hasIn } from 'ramda';
 import { Store, Unsubscribe } from 'redux';
 import { PropertyWatch } from './connect';
 import { getWatchedProperties } from './watched-redux-property';
@@ -21,11 +21,12 @@ const getProperties = (state: any, litElement) =>
     old: litElement[x.name],
     current: x.selector.call(litElement, state)
   }));
+const isDomElement = hasIn("tagName");
 const rejectUnchanged: (changes: PropertyState[]) => PropertyState[] = reject<PropertyState>(x => x.old === x.current);
 const updateProperties = (element: LitElement) =>
   map<PropertyState, void>(change => {
     element[change.name] = change.current;
-    if (element.requestUpdate) element.requestUpdate(change.name, change.old).then(nop);
+    if (element.requestUpdate && !isDomElement(element)) element.requestUpdate(change.name, change.old).then(nop);
   });
 const getStoreWatches = (element: LitElement) => (store: Store<any, any>) =>
   pipe(
