@@ -1,8 +1,13 @@
-import { dedupingMixin, microTask, MixinFunction } from '@uxland/uxl-utilities';
-import { Constructor, LitElement } from 'lit-element';
-import { Store, Unsubscribe } from 'redux';
-import { bind } from './bind';
-import { unbind } from './unbind';
+import {
+  Constructor,
+  MixinFunction,
+  dedupingMixin,
+  microTask,
+} from "@uxland/uxl-utilities";
+import { LitElement } from "lit";
+import { Store, Unsubscribe } from "redux";
+import { bind } from "./bind";
+import { unbind } from "./unbind";
 
 export interface ConnectMixin {
   __reduxStoreSubscriptions__: Unsubscribe[];
@@ -28,7 +33,9 @@ export interface ConnectMixinConstructor extends LitElement {
 
 export type ConnectMixinFunction = MixinFunction<ConnectMixinConstructor>;
 
-export const connect: (defaultStore?: Store<any, any>) => ConnectMixinFunction = (defaultStore) =>
+export const connect: (
+  defaultStore?: Store<any, any>
+) => ConnectMixinFunction = (defaultStore) =>
   dedupingMixin((superClass: Constructor<LitElement>) => {
     class connectMixin extends superClass implements ConnectMixin {
       __reduxStoreSubscriptions__: Unsubscribe[];
